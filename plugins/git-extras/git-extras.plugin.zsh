@@ -72,16 +72,24 @@ __gitex_specific_branch_names() {
     _wanted branch-names expl branch-name compadd $* - $branch_names
 }
 
-__gitex_feature_branch_names() {
-    __gitex_specific_branch_names 'feature'
+__gitex_feat_branch_names() {
+    __gitex_specific_branch_names 'feat'
 }
 
-__gitex_refactor_branch_names() {
-    __gitex_specific_branch_names 'refactor'
+__gitex_docs_branch_names() {
+    __gitex_specific_branch_names 'docs'
 }
 
-__gitex_bug_branch_names() {
-    __gitex_specific_branch_names 'bug'
+__gitex_style_branch_names() {
+    __gitex_specific_branch_names 'style'
+}
+
+__gitex_test_branch_names() {
+    __gitex_specific_branch_names 'test'
+}
+
+__gitex_chore_branch_names() {
+    __gitex_specific_branch_names 'chore'
 }
 
 __gitex_submodule_names() {
@@ -103,7 +111,7 @@ __gitex_author_names() {
 
 # subcommands
 
-_git-bug() {
+_git-fix() {
     local curcontext=$curcontext state line ret=1
     declare -A opt_args
 
@@ -295,7 +303,6 @@ zstyle ':completion:*:*:git:*' user-commands \
     alias:'define, search and show aliases' \
     archive-file:'export the current HEAD of the git repository to a archive' \
     back:'undo and stage latest commits' \
-    bug:'create a bug branch' \
     changelog:'populate changelog file with commits since the previous tag' \
     commits-since:'list commits since a given date' \
     contrib:'display author contributions' \
@@ -307,7 +314,14 @@ zstyle ':completion:*:*:git:*' user-commands \
     delete-tag:'delete local and remote tag' \
     effort:'display effort statistics' \
     extras:'git-extras' \
-    feature:'create a feature branch' \
+    feat:'A new feature' \
+    fix:'A bug fix' \
+    docs:'Documentation only changes' \
+    style:'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)' \
+    refactor:'A code change that neither fixes a bug nor adds a feature' \
+    perf:'A code change that improves performance' \
+    test:'Adding missing tests' \
+    chore:'Changes to the build process or auxiliary tools and libraries such as documentation generation' \
     fork:'fork a repo on github' \
     fresh-branch:'create empty local branch' \
     gh-pages:'create the GitHub Pages branch' \
@@ -320,7 +334,6 @@ zstyle ':completion:*:*:git:*' user-commands \
     missing:'show commits missing from another branch' \
     pr:'checks out a pull request locally' \
     rebase-patch:'rebases a patch' \
-    refactor:'create a refactor branch' \
     release:'commit, tag and push changes to the repository' \
     rename-tag:'rename a tag' \
     repl:'read-eval-print-loop' \
